@@ -9,10 +9,10 @@ class LightsSpec extends Specification {
             Lights Lights = new Lights(firstSideOfRectagle, secondSideOfRectagle)
 
         then: "All lights are turned off."
-            Lights.countTurnedOffLights() == turnedOffLights
+            Lights.countTurnedOffLights() == expectedTurnedOffLights
 
         where:
-            firstSideOfRectagle | secondSideOfRectagle || turnedOffLights
+            firstSideOfRectagle | secondSideOfRectagle || expectedTurnedOffLights
             10                  | 10                   || 100
             2                   | 3                    || 6
             15                  | 12                   || 180
