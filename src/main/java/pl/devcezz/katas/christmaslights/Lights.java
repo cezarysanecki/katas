@@ -11,7 +11,7 @@ class Lights {
     }
 
 
-    public int getTurnedOffLights() {
+    public int countTurnedOffLights() {
         return firstSide * secondSide;
     }
 }

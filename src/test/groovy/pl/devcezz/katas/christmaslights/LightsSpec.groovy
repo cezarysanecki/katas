@@ -9,7 +9,7 @@ class LightsSpec extends Specification {
             Lights Lights = new Lights(firstSideOfRectagle, secondSideOfRectagle)
 
         then: "All lights are turned off."
-            Lights.getTurnedOffLights() == turnedOffLights
+            Lights.countTurnedOffLights() == turnedOffLights
 
         where:
             firstSideOfRectagle | secondSideOfRectagle || turnedOffLights
