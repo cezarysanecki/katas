@@ -2,14 +2,14 @@ package pl.devcezz.katas.christmaslights
 
 import spock.lang.Specification
 
-class LightsSpec extends Specification {
+class RectangleLightsSpec extends Specification {
 
-    def "should all lights be turned off on start"() {
+    def "should all lights be turned off on start when instantiate square of lights"() {
         when: "Prepare rectangle of lights."
-            Lights Lights = new Lights(firstSideOfRectagle, secondSideOfRectagle)
+            RectangleLights lights = new RectangleLights(firstSideOfRectagle, secondSideOfRectagle)
 
         then: "All lights are turned off."
-            Lights.countTurnedOffLights() == expectedTurnedOffLights
+            lights.countTurnedOffLights() == expectedTurnedOffLights
 
         where:
             firstSideOfRectagle | secondSideOfRectagle || expectedTurnedOffLights
