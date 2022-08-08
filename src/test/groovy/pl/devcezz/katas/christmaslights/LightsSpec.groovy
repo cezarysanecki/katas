@@ -1,3 +1,5 @@
+package pl.devcezz.katas.christmaslights
+
 import spock.lang.Specification
 
 class LightsSpec extends Specification {
