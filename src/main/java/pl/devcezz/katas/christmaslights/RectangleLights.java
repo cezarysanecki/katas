@@ -13,4 +13,8 @@ class RectangleLights {
     int countTurnedOffLights() {
         return firstSide * secondSide;
     }
+
+    int countTurnedOnLights() {
+        return 0;
+    }
 }

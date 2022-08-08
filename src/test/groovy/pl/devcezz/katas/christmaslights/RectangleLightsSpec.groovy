@@ -10,6 +10,8 @@ class RectangleLightsSpec extends Specification {
 
         then: "All lights are turned off."
             lights.countTurnedOffLights() == expectedTurnedOffLights
+        and: "None of lights are turned on."
+            lights.countTurnedOnLights() == 0
 
         where:
             firstSideOfRectagle | secondSideOfRectagle || expectedTurnedOffLights
