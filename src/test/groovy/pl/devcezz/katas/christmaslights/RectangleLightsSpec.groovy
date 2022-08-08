@@ -6,7 +6,7 @@ class RectangleLightsSpec extends Specification {
 
     def "should all lights be turned off on start when instantiate square of lights"() {
         when: "Prepare rectangle of lights."
-            RectangleLights lights = new RectangleLights(firstSideOfRectagle, secondSideOfRectagle)
+            RectangleLights lights = new RectangleLights(side)
 
         then: "All lights are turned off."
             lights.countTurnedOffLights() == expectedTurnedOffLights
@@ -14,9 +14,9 @@ class RectangleLightsSpec extends Specification {
             lights.countTurnedOnLights() == 0
 
         where:
-            firstSideOfRectagle | secondSideOfRectagle || expectedTurnedOffLights
-            10                  | 10                   || 100
-            2                   | 3                    || 6
-            15                  | 12                   || 180
+            side || expectedTurnedOffLights
+            10   || 100
+            2    || 4
+            15   || 225
     }
 }

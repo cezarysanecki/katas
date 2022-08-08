@@ -2,16 +2,14 @@ package pl.devcezz.katas.christmaslights;
 
 class RectangleLights {
 
-    private final int firstSide;
-    private final int secondSide;
+    private final int side;
 
-    RectangleLights(int firstSide, int secondSide) {
-        this.firstSide = firstSide;
-        this.secondSide = secondSide;
+    RectangleLights(int side) {
+        this.side = side;
     }
 
     int countTurnedOffLights() {
-        return firstSide * secondSide;
+        return side * side;
     }
 
     int countTurnedOnLights() {
