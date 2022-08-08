@@ -14,7 +14,7 @@ class LightsSpec extends Specification {
         where:
             firstSideOfRectagle | secondSideOfRectagle || turnedOffLights
             10                  | 10                   || 100
-            2                   | 3                    || 3
+            2                   | 3                    || 6
             15                  | 12                   || 180
     }
 }
