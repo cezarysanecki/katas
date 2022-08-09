@@ -17,7 +17,7 @@ class LightGrid {
 
         for (int i = 0; i < side; i++) {
             for (int j = 0; j < side; j++) {
-                area[i][j] = Light.turnedOff();
+                area[i][j] = Light.zeroBright();
             }
         }
     }
