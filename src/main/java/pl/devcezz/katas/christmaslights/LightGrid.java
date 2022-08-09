@@ -22,37 +22,47 @@ class LightGrid {
         }
     }
 
+    void brighten(Point leftBottomCorner, Point rightTopCorner) {
+        makeActionOnEveryLightInArea(
+                prepareArea(leftBottomCorner, rightTopCorner),
+                Light::brighten);
+    }
+
+    void brightenMore(Point leftBottomCorner, Point rightTopCorner) {
+        makeActionOnEveryLightInArea(
+                prepareArea(leftBottomCorner, rightTopCorner),
+                Light::brightenMore);
+    }
+
+    void darken(Point leftBottomCorner, Point rightTopCorner) {
+        makeActionOnEveryLightInArea(
+                prepareArea(leftBottomCorner, rightTopCorner),
+                Light::darken);
+    }
+
+    int countBrightness() {
+        return streamOfLights().mapToInt(Light::getBright).sum();
+    }
+
     @Deprecated
     void turnOn(Point leftBottomCorner, Point rightTopCorner) {
-        if (leftBottomCorner == null || rightTopCorner == null) {
-            throw new IllegalArgumentException("points cannot be null");
-        }
-
-        Area area = prepareArea(leftBottomCorner, rightTopCorner);
-
-        makeActionOnEveryLightInArea(area, Light::turnOn);
+        makeActionOnEveryLightInArea(
+                prepareArea(leftBottomCorner, rightTopCorner),
+                Light::turnOn);
     }
 
     @Deprecated
     void turnOff(Point leftBottomCorner, Point rightTopCorner) {
-        if (leftBottomCorner == null || rightTopCorner == null) {
-            throw new IllegalArgumentException("points cannot be null");
-        }
-
-        Area area = prepareArea(leftBottomCorner, rightTopCorner);
-
-        makeActionOnEveryLightInArea(area, Light::turnOff);
+        makeActionOnEveryLightInArea(
+                prepareArea(leftBottomCorner, rightTopCorner),
+                Light::turnOff);
     }
 
     @Deprecated
     void toggle(Point leftBottomCorner, Point rightTopCorner) {
-        if (leftBottomCorner == null || rightTopCorner == null) {
-            throw new IllegalArgumentException("points cannot be null");
-        }
-
-        Area area = prepareArea(leftBottomCorner, rightTopCorner);
-
-        makeActionOnEveryLightInArea(area, Light::toggle);
+        makeActionOnEveryLightInArea(
+                prepareArea(leftBottomCorner, rightTopCorner),
+                Light::toggle);
     }
 
     @Deprecated
@@ -67,45 +77,15 @@ class LightGrid {
                 .count();
     }
 
-    void brighten(Point leftBottomCorner, Point rightTopCorner) {
-        if (leftBottomCorner == null || rightTopCorner == null) {
-            throw new IllegalArgumentException("points cannot be null");
-        }
-
-        Area area = prepareArea(leftBottomCorner, rightTopCorner);
-
-        makeActionOnEveryLightInArea(area, Light::brighten);
-    }
-
-    public void brightenMore(Point leftBottomCorner, Point rightTopCorner) {
-        if (leftBottomCorner == null || rightTopCorner == null) {
-            throw new IllegalArgumentException("points cannot be null");
-        }
-
-        Area area = prepareArea(leftBottomCorner, rightTopCorner);
-
-        makeActionOnEveryLightInArea(area, Light::brightenMore);
-    }
-
-    public void darken(Point leftBottomCorner, Point rightTopCorner) {
-        if (leftBottomCorner == null || rightTopCorner == null) {
-            throw new IllegalArgumentException("points cannot be null");
-        }
-
-        Area area = prepareArea(leftBottomCorner, rightTopCorner);
-
-        makeActionOnEveryLightInArea(area, Light::darken);
-    }
-
-    int countBrightness() {
-        return streamOfLights().mapToInt(Light::getBright).sum();
-    }
-
     private Stream<Light> streamOfLights() {
         return Arrays.stream(area).flatMap(Arrays::stream);
     }
 
     private Area prepareArea(Point leftBottomCorner, Point rightTopCorner) {
+        if (leftBottomCorner == null || rightTopCorner == null) {
+            throw new IllegalArgumentException("points cannot be null");
+        }
+
         int horizontalLengthOfArea = rightTopCorner.x() - leftBottomCorner.x();
         int verticalLengthOfArea = rightTopCorner.y() - leftBottomCorner.y();
 
