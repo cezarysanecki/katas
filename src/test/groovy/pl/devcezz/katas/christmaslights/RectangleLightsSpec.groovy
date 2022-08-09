@@ -50,4 +50,25 @@ class RectangleLightsSpec extends Specification {
         then: "Lights are turned on on specified area"
             lights.countTurnedOnLights() == 36
     }
+
+    def "should toggle lights on specified area"() {
+        given: "Prepare rectangle of lights."
+            RectangleLights lights = new RectangleLights(10)
+
+        when: "Toggle lights on specified area."
+            lights.toggle(Point.of(0, 0), Point.of(9, 9))
+
+        then: "All lights are turned on."
+            lights.countTurnedOnLights() == 100
+        and:
+            lights.countTurnedOffLights() == 0
+
+        when: "Toggle lights on specified area."
+            lights.toggle(Point.of(0, 0), Point.of(9, 9))
+
+        then: "All lights are turned off."
+            lights.countTurnedOnLights() == 0
+        and:
+            lights.countTurnedOffLights() == 100
+    }
 }
