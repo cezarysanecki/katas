@@ -22,6 +22,7 @@ class LightGrid {
         }
     }
 
+    @Deprecated
     void turnOn(Point leftBottomCorner, Point rightTopCorner) {
         if (leftBottomCorner == null || rightTopCorner == null) {
             throw new IllegalArgumentException("points cannot be null");
@@ -32,6 +33,7 @@ class LightGrid {
         makeActionOnEveryLightInArea(area, Light::turnOn);
     }
 
+    @Deprecated
     void turnOff(Point leftBottomCorner, Point rightTopCorner) {
         if (leftBottomCorner == null || rightTopCorner == null) {
             throw new IllegalArgumentException("points cannot be null");
@@ -42,6 +44,7 @@ class LightGrid {
         makeActionOnEveryLightInArea(area, Light::turnOff);
     }
 
+    @Deprecated
     void toggle(Point leftBottomCorner, Point rightTopCorner) {
         if (leftBottomCorner == null || rightTopCorner == null) {
             throw new IllegalArgumentException("points cannot be null");
@@ -52,10 +55,12 @@ class LightGrid {
         makeActionOnEveryLightInArea(area, Light::toggle);
     }
 
+    @Deprecated
     long countTurnedOffLights() {
         return streamOfLights().count() - countTurnedOnLights();
     }
 
+    @Deprecated
     long countTurnedOnLights() {
         return streamOfLights()
                 .filter(Light::isTurnedOn)
