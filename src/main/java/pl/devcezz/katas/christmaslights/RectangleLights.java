@@ -31,7 +31,7 @@ class RectangleLights {
                 .count();
     }
 
-    public void turnOn(Point leftBottomCorner, Point rightTopCorner) {
+    void turnOn(Point leftBottomCorner, Point rightTopCorner) {
         if (leftBottomCorner == null || rightTopCorner == null) {
             throw new IllegalArgumentException("points cannot be null");
         }
@@ -59,6 +59,34 @@ class RectangleLights {
         }
     }
 
+    void turnOff(Point leftBottomCorner, Point rightTopCorner) {
+        if (leftBottomCorner == null || rightTopCorner == null) {
+            throw new IllegalArgumentException("points cannot be null");
+        }
+        if (leftBottomCorner.x() > rightTopCorner.x()) {
+            throw new IllegalArgumentException("left corner cannot be greater then right corner");
+        }
+        if (leftBottomCorner.y() > rightTopCorner.y()) {
+            throw new IllegalArgumentException("bottom corner cannot be greater then top corner");
+        }
+
+        int horizontalLengthOfArea = rightTopCorner.x() - leftBottomCorner.x();
+        int verticalLengthOfArea = rightTopCorner.y() - leftBottomCorner.y();
+
+        int startingHorizontalPosition = leftBottomCorner.x();
+        int endingHorizontalPosition = leftBottomCorner.x() + horizontalLengthOfArea;
+
+        int startingVerticalPosition = leftBottomCorner.y();
+        int endingVerticalPosition = leftBottomCorner.y() + verticalLengthOfArea;
+
+        for (int i = startingHorizontalPosition; i <= endingHorizontalPosition; i++) {
+            for (int j = startingVerticalPosition; j <= endingVerticalPosition; j++) {
+                Light light = area[i][j];
+                light.turnOff();
+            }
+        }
+    }
+
     private Stream<Light> streamOfLights() {
         return Arrays.stream(area).flatMap(Arrays::stream);
     }
@@ -78,6 +106,10 @@ class Light {
 
     void turnOn() {
         this.turnedOn = true;
+    }
+
+    void turnOff() {
+        this.turnedOn = false;
     }
 
     boolean isTurnedOn() {
