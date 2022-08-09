@@ -2,11 +2,11 @@ package pl.devcezz.katas.christmaslights
 
 import spock.lang.Specification
 
-class RectangleLightsSpec extends Specification {
+class LightGridSpec extends Specification {
 
     def "should all lights be turned off on start when instantiate square of lights"() {
         when: "Prepare rectangle of lights."
-            RectangleLights lights = new RectangleLights(side)
+            LightGrid lights = new LightGrid(side)
 
         then: "All lights are turned off."
             lights.countTurnedOffLights() == expectedTurnedOffLights
@@ -22,7 +22,7 @@ class RectangleLightsSpec extends Specification {
 
     def "should turn lights on on specified area"() {
         given: "Prepare rectangle of lights."
-            RectangleLights lights = new RectangleLights(10)
+            LightGrid lights = new LightGrid(10)
 
         when: "Turn on lights on specified area."
             lights.turnOn(Point.of(firstX, firstY), Point.of(secondX, secondY))
@@ -40,7 +40,7 @@ class RectangleLightsSpec extends Specification {
 
     def "should turn lights off on specified area"() {
         given: "Prepare rectangle of lights."
-            RectangleLights lights = new RectangleLights(10)
+            LightGrid lights = new LightGrid(10)
         and: "Turn on lights on specified area."
             lights.turnOn(Point.of(0, 0), Point.of(9, 9))
 
@@ -53,7 +53,7 @@ class RectangleLightsSpec extends Specification {
 
     def "should toggle lights on specified area"() {
         given: "Prepare rectangle of lights."
-            RectangleLights lights = new RectangleLights(10)
+            LightGrid lights = new LightGrid(10)
 
         when: "Toggle lights on specified area."
             lights.toggle(Point.of(0, 0), Point.of(9, 9))

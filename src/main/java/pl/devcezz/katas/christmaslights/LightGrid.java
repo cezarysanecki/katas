@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
-class RectangleLights {
+class LightGrid {
 
     private final Light[][] area;
 
-    RectangleLights(int side) {
+    LightGrid(int side) {
         if (side <= 0) {
             throw new IllegalArgumentException("side must be positive");
         }

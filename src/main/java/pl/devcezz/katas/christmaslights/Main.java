@@ -13,7 +13,7 @@ public class Main {
 
         String sideOfSquare = lines.get(0);
 
-        RectangleLights lights = new RectangleLights(Integer.parseInt(sideOfSquare));
+        LightGrid lights = new LightGrid(Integer.parseInt(sideOfSquare));
 
         lines.stream()
                 .skip(1)
