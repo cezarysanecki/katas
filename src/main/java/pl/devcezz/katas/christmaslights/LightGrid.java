@@ -150,6 +150,9 @@ class Light {
     }
 
     void darken() {
+        if (this.bright == 0) {
+            return;
+        }
         this.bright--;
     }
 
