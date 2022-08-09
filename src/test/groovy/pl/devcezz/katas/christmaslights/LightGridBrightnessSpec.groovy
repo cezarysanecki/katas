@@ -42,4 +42,18 @@ class LightGridBrightnessSpec extends Specification {
         then: "Some lights are darkened by 1."
             lights.countBrightness() == 36
     }
+
+    def "should cannot darken lights to negative number of brightness"() {
+        when: "Prepare rectangle of lights."
+            LightGrid lights = new LightGrid(10)
+
+        then: "Brightness is zero."
+            lights.countBrightness() == 0
+
+        when: "Darken lights on specified area."
+            lights.darken(Point.of(0, 0), Point.of(9, 9))
+
+        then: "Brightness is still zero."
+            lights.countBrightness() == 0
+    }
 }
