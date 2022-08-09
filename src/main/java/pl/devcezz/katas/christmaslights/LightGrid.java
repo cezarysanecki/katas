@@ -67,6 +67,10 @@ class LightGrid {
                 .count();
     }
 
+    int countBrightness() {
+        return 0;
+    }
+
     private Stream<Light> streamOfLights() {
         return Arrays.stream(area).flatMap(Arrays::stream);
     }

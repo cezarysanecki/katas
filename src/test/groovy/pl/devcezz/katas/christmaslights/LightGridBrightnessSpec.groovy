@@ -9,6 +9,6 @@ class LightGridBrightnessSpec extends Specification {
             LightGrid lights = new LightGrid(10)
 
         then: "Brightness is zero."
-            lights.countBrithness() == 0
+            lights.countBrightness() == 0
     }
 }
