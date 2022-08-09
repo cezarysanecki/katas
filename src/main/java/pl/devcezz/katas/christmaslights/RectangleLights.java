@@ -22,16 +22,6 @@ class RectangleLights {
         }
     }
 
-    long countTurnedOffLights() {
-        return streamOfLights().count() - countTurnedOnLights();
-    }
-
-    long countTurnedOnLights() {
-        return streamOfLights()
-                .filter(Light::isTurnedOn)
-                .count();
-    }
-
     void turnOn(Point leftBottomCorner, Point rightTopCorner) {
         if (leftBottomCorner == null || rightTopCorner == null) {
             throw new IllegalArgumentException("points cannot be null");
@@ -50,6 +40,26 @@ class RectangleLights {
         Area area = prepareArea(leftBottomCorner, rightTopCorner);
 
         makeActionOnEveryLightInArea(area, Light::turnOff);
+    }
+
+    void toggle(Point leftBottomCorner, Point rightTopCorner) {
+        if (leftBottomCorner == null || rightTopCorner == null) {
+            throw new IllegalArgumentException("points cannot be null");
+        }
+
+        Area area = prepareArea(leftBottomCorner, rightTopCorner);
+
+        makeActionOnEveryLightInArea(area, Light::toggle);
+    }
+
+    long countTurnedOffLights() {
+        return streamOfLights().count() - countTurnedOnLights();
+    }
+
+    long countTurnedOnLights() {
+        return streamOfLights()
+                .filter(Light::isTurnedOn)
+                .count();
     }
 
     private Stream<Light> streamOfLights() {
@@ -105,6 +115,10 @@ class Light {
 
     void turnOff() {
         this.turnedOn = false;
+    }
+
+    void toggle() {
+        this.turnedOn = !this.turnedOn;
     }
 
     boolean isTurnedOn() {
