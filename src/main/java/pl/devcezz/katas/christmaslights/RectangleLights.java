@@ -1,6 +1,7 @@
 package pl.devcezz.katas.christmaslights;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 class RectangleLights {
 
@@ -17,22 +18,35 @@ class RectangleLights {
     }
 
     long countTurnedOffLights() {
-        return Arrays.stream(area).flatMap(Arrays::stream).count() - countTurnedOnLights();
+        return streamOfLights().count() - countTurnedOnLights();
     }
 
     long countTurnedOnLights() {
-        return Arrays.stream(area)
-                .flatMap(Arrays::stream)
+        return streamOfLights()
                 .filter(Light::isTurnedOn)
                 .count();
     }
 
     public void turnOn(Point leftBottomCorner, Point rightTopCorner) {
-        for (int i = leftBottomCorner.x(); i <= leftBottomCorner.x() + (rightTopCorner.x() - leftBottomCorner.x()); i++) {
-            for (int j = leftBottomCorner.y(); j <= leftBottomCorner.y() + (rightTopCorner.y() - leftBottomCorner.y()); j++) {
-                area[i][j].turnOn();
+        int horizontalLengthOfArea = rightTopCorner.x() - leftBottomCorner.x();
+        int verticalLengthOfArea = rightTopCorner.y() - leftBottomCorner.y();
+
+        int startingHorizontalPosition = leftBottomCorner.x();
+        int endingHorizontalPosition = leftBottomCorner.x() + horizontalLengthOfArea;
+
+        int startingVerticalPosition = leftBottomCorner.y();
+        int endingVerticalPosition = leftBottomCorner.y() + verticalLengthOfArea;
+
+        for (int i = startingHorizontalPosition; i <= endingHorizontalPosition; i++) {
+            for (int j = startingVerticalPosition; j <= endingVerticalPosition; j++) {
+                Light light = area[i][j];
+                light.turnOn();
             }
         }
+    }
+
+    private Stream<Light> streamOfLights() {
+        return Arrays.stream(area).flatMap(Arrays::stream);
     }
 }
 

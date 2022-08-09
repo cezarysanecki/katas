@@ -20,7 +20,7 @@ class RectangleLightsSpec extends Specification {
             15   || 225
     }
 
-    def "should turn lights on specified area"() {
+    def "should turn lights on on specified area"() {
         given: "Prepare rectangle of lights."
             RectangleLights lights = new RectangleLights(10)
 
