@@ -37,4 +37,17 @@ class RectangleLightsSpec extends Specification {
             1      | 1      | 9       | 9       || 81
             4      | 4      | 7       | 9       || 24
     }
+
+    def "should turn lights off on specified area"() {
+        given: "Prepare rectangle of lights."
+            RectangleLights lights = new RectangleLights(10)
+        and: "Turn on lights on specified area."
+            lights.turnOn(Point.of(0, 0), Point.of(9, 9))
+
+        when: "Turn off lights on specified area."
+            lights.turnOff(Point.of(1, 1), Point.of(8, 8))
+
+        then: "Lights are turned on on specified area"
+            lights.countTurnedOnLights() == 36
+    }
 }
