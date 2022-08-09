@@ -10,12 +10,7 @@ class Light {
         this.bright = bright;
     }
 
-    @Deprecated
     static Light turnedOff() {
-        return new Light(false, 0);
-    }
-
-    static Light zeroBright() {
         return new Light(false, 0);
     }
 
