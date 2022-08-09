@@ -8,6 +8,10 @@ class RectangleLights {
     private final Light[][] area;
 
     RectangleLights(int side) {
+        if (side <= 0) {
+            throw new IllegalArgumentException("side must be positive");
+        }
+
         area = new Light[side][side];
 
         for (int i = 0; i < side; i++) {
@@ -28,6 +32,16 @@ class RectangleLights {
     }
 
     public void turnOn(Point leftBottomCorner, Point rightTopCorner) {
+        if (leftBottomCorner == null || rightTopCorner == null) {
+            throw new IllegalArgumentException("points cannot be null");
+        }
+        if (leftBottomCorner.x() > rightTopCorner.x()) {
+            throw new IllegalArgumentException("left corner cannot be greater then right corner");
+        }
+        if (leftBottomCorner.y() > rightTopCorner.y()) {
+            throw new IllegalArgumentException("bottom corner cannot be greater then top corner");
+        }
+
         int horizontalLengthOfArea = rightTopCorner.x() - leftBottomCorner.x();
         int verticalLengthOfArea = rightTopCorner.y() - leftBottomCorner.y();
 

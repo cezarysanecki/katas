@@ -4,6 +4,15 @@ import java.util.Objects;
 
 record Point(int x, int y) {
 
+    Point {
+        if (x < 0) {
+            throw new IllegalArgumentException("x cannot be negative");
+        }
+        if (y < 0) {
+            throw new IllegalArgumentException("y cannot be negative");
+        }
+    }
+
     static Point of(int x, int y) {
         return new Point(x, y);
     }
