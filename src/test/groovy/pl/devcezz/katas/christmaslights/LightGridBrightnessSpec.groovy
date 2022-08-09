@@ -12,12 +12,12 @@ class LightGridBrightnessSpec extends Specification {
             lights.countBrightness() == 0
     }
 
-    def "should lighten lights on specified area"() {
+    def "should brighten lights on specified area"() {
         given: "Prepare rectangle of lights."
             LightGrid lights = new LightGrid(10)
 
-        when: "Lighten lights on specified area."
-            lights.lighten(Point.of(firstX, firstY), Point.of(secondX, secondY))
+        when: "Brighten lights on specified area."
+            lights.brighten(Point.of(firstX, firstY), Point.of(secondX, secondY))
 
         then: "All lights are brightened by 1."
             lights.countBrightness() == expectedBrightness
@@ -33,17 +33,17 @@ class LightGridBrightnessSpec extends Specification {
     def "should darken lights on specified area"() {
         given: "Prepare rectangle of lights."
             LightGrid lights = new LightGrid(10)
-        and: "Light lights on specified area."
-            lights.lighten(Point.of(0, 0), Point.of(9, 9))
+        and: "Brighten all lights."
+            lights.brighten(Point.of(0, 0), Point.of(9, 9))
 
-        when: "Turn off lights on specified area."
+        when: "Darken lights on specified area."
             lights.darken(Point.of(1, 1), Point.of(8, 8))
 
         then: "Some lights are darkened by 1."
             lights.countBrightness() == 36
     }
 
-    def "should cannot darken lights to negative number of brightness"() {
+    def "should not be able to darken lights to negative number of brightness"() {
         when: "Prepare rectangle of lights."
             LightGrid lights = new LightGrid(10)
 
