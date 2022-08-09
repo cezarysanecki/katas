@@ -77,6 +77,16 @@ class LightGrid {
         makeActionOnEveryLightInArea(area, Light::brighten);
     }
 
+    public void brightenMore(Point leftBottomCorner, Point rightTopCorner) {
+        if (leftBottomCorner == null || rightTopCorner == null) {
+            throw new IllegalArgumentException("points cannot be null");
+        }
+
+        Area area = prepareArea(leftBottomCorner, rightTopCorner);
+
+        makeActionOnEveryLightInArea(area, Light::brightenMore);
+    }
+
     public void darken(Point leftBottomCorner, Point rightTopCorner) {
         if (leftBottomCorner == null || rightTopCorner == null) {
             throw new IllegalArgumentException("points cannot be null");
@@ -147,6 +157,10 @@ class Light {
 
     void brighten() {
         this.bright++;
+    }
+
+    void brightenMore() {
+        this.bright += 2;
     }
 
     void darken() {
