@@ -1,4 +1,3 @@
-# Christmas Lights Kata
+# Refactoring katas
 
-- Category: TDD
-- Link: [Christmas Lights Kata](https://kata-log.rocks/christmas-lights-kata)
+There are tasks of refactoring katas
