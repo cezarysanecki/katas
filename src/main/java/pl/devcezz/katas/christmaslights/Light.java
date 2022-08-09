@@ -2,16 +2,14 @@ package pl.devcezz.katas.christmaslights;
 
 class Light {
 
-    private boolean turnedOn;
     private int bright;
 
-    private Light(boolean turnedOn, int bright) {
-        this.turnedOn = turnedOn;
+    private Light(int bright) {
         this.bright = bright;
     }
 
     static Light turnedOff() {
-        return new Light(false, 0);
+        return new Light(0);
     }
 
     void brighten() {
@@ -33,23 +31,4 @@ class Light {
         return bright;
     }
 
-    @Deprecated
-    void turnOn() {
-        this.turnedOn = true;
-    }
-
-    @Deprecated
-    void turnOff() {
-        this.turnedOn = false;
-    }
-
-    @Deprecated
-    void toggle() {
-        this.turnedOn = !this.turnedOn;
-    }
-
-    @Deprecated
-    boolean isTurnedOn() {
-        return turnedOn;
-    }
 }

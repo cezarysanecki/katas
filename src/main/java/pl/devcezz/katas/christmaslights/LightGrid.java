@@ -2,7 +2,6 @@ package pl.devcezz.katas.christmaslights;
 
 import java.util.Arrays;
 import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 class LightGrid {
 
@@ -41,44 +40,9 @@ class LightGrid {
     }
 
     int countBrightness() {
-        return streamOfLights().mapToInt(Light::getBright).sum();
-    }
-
-    @Deprecated
-    void turnOn(Point leftBottomCorner, Point rightTopCorner) {
-        makeActionOnEveryLightInArea(
-                prepareArea(leftBottomCorner, rightTopCorner),
-                Light::turnOn);
-    }
-
-    @Deprecated
-    void turnOff(Point leftBottomCorner, Point rightTopCorner) {
-        makeActionOnEveryLightInArea(
-                prepareArea(leftBottomCorner, rightTopCorner),
-                Light::turnOff);
-    }
-
-    @Deprecated
-    void toggle(Point leftBottomCorner, Point rightTopCorner) {
-        makeActionOnEveryLightInArea(
-                prepareArea(leftBottomCorner, rightTopCorner),
-                Light::toggle);
-    }
-
-    @Deprecated
-    long countTurnedOffLights() {
-        return streamOfLights().count() - countTurnedOnLights();
-    }
-
-    @Deprecated
-    long countTurnedOnLights() {
-        return streamOfLights()
-                .filter(Light::isTurnedOn)
-                .count();
-    }
-
-    private Stream<Light> streamOfLights() {
-        return Arrays.stream(area).flatMap(Arrays::stream);
+        return Arrays.stream(area)
+                .flatMap(Arrays::stream)
+                .mapToInt(Light::getBright).sum();
     }
 
     private Area prepareArea(Point leftBottomCorner, Point rightTopCorner) {
