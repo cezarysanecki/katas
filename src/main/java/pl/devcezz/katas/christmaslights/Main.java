@@ -33,13 +33,13 @@ public class Main {
                             Integer.parseInt(secondPoint[1]));
 
                     switch (instruction) {
-                        case I -> lights.turnOn(leftBottomCorner, rightTopCorner);
-                        case O -> lights.turnOff(leftBottomCorner, rightTopCorner);
-                        case T -> lights.toggle(leftBottomCorner, rightTopCorner);
+                        case I -> lights.brighten(leftBottomCorner, rightTopCorner);
+                        case O -> lights.darken(leftBottomCorner, rightTopCorner);
+                        case T -> lights.brightenMore(leftBottomCorner, rightTopCorner);
                     }
                 });
 
-        System.out.println("Amount of lit lights is: " + lights.countTurnedOnLights());
+        System.out.println("Brightness of light gris is: " + lights.countBrightness());
     }
 }
 
