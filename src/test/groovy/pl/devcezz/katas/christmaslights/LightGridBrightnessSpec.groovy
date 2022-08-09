@@ -56,4 +56,15 @@ class LightGridBrightnessSpec extends Specification {
         then: "Brightness is still zero."
             lights.countBrightness() == 0
     }
+
+    def "should brighten more lights"() {
+        given: "Prepare rectangle of lights."
+            LightGrid lights = new LightGrid(10)
+
+        when: "Brighten more all lights."
+            lights.brightenMore(Point.of(0, 0), Point.of(9, 9))
+
+        then: "All lights are brightened by 2."
+            lights.countBrightness() == 200
+    }
 }
