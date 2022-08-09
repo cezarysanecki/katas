@@ -67,8 +67,18 @@ class LightGrid {
                 .count();
     }
 
+    void lighten(Point leftBottomCorner, Point rightTopCorner) {
+        if (leftBottomCorner == null || rightTopCorner == null) {
+            throw new IllegalArgumentException("points cannot be null");
+        }
+
+        Area area = prepareArea(leftBottomCorner, rightTopCorner);
+
+        makeActionOnEveryLightInArea(area, Light::light);
+    }
+
     int countBrightness() {
-        return 0;
+        return streamOfLights().mapToInt(Light::getBright).sum();
     }
 
     private Stream<Light> streamOfLights() {
@@ -109,27 +119,46 @@ class LightGrid {
 class Light {
 
     private boolean turnedOn;
+    private int bright;
 
-    private Light(boolean turnedOn) {
+    private Light(boolean turnedOn, int bright) {
         this.turnedOn = turnedOn;
+        this.bright = bright;
     }
 
+    @Deprecated
     static Light turnedOff() {
-        return new Light(false);
+        return new Light(false, 0);
     }
 
+    static Light zeroBright() {
+        return new Light(false, 0);
+    }
+
+    void light() {
+        this.bright++;
+    }
+
+    int getBright() {
+        return bright;
+    }
+
+    @Deprecated
     void turnOn() {
         this.turnedOn = true;
     }
 
+    @Deprecated
     void turnOff() {
         this.turnedOn = false;
     }
 
+    @Deprecated
     void toggle() {
         this.turnedOn = !this.turnedOn;
     }
 
+    @Deprecated
     boolean isTurnedOn() {
         return turnedOn;
     }
