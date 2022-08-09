@@ -77,6 +77,16 @@ class LightGrid {
         makeActionOnEveryLightInArea(area, Light::light);
     }
 
+    public void darken(Point leftBottomCorner, Point rightTopCorner) {
+        if (leftBottomCorner == null || rightTopCorner == null) {
+            throw new IllegalArgumentException("points cannot be null");
+        }
+
+        Area area = prepareArea(leftBottomCorner, rightTopCorner);
+
+        makeActionOnEveryLightInArea(area, Light::darken);
+    }
+
     int countBrightness() {
         return streamOfLights().mapToInt(Light::getBright).sum();
     }
@@ -137,6 +147,10 @@ class Light {
 
     void light() {
         this.bright++;
+    }
+
+    void darken() {
+        this.bright--;
     }
 
     int getBright() {
